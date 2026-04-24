@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jasna Trgachevska — Fractional PM, Web3 & AI</title>
+  <meta name="description" content="Fractional Product Manager specialising in Web3 infrastructure and AI-driven products. Cross-chain protocols, DAO tooling, developer APIs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #08090d;
+      --surface:  #0f1117;
+      --surface2: #151820;
+      --border:   rgba(255,255,255,0.07);
+      --border2:  rgba(255,255,255,0.12);
+      --text:     #e8eaf0;
+      --muted:    #7a7f94;
+      --accent1:  #6c63ff;
+      --accent2:  #a78bfa;
+      --accent3:  #38bdf8;
+      --green:    #34d399;
+      --grad:     linear-gradient(135deg, #6c63ff 0%, #a78bfa 50%, #38bdf8 100%);
+      --grad2:    linear-gradient(135deg, #6c63ff, #a78bfa);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent1); border-radius: 3px; }
+
+    /* ─── GRID BACKGROUND ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(108,99,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(108,99,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+      background: rgba(8,9,13,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--grad2);
+      color: #fff !important;
+      padding: 0.4rem 1.1rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent2);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    h1, h2, h3 { font-weight: 700; line-height: 1.2; }
+
+    h2 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 64px;
+      max-width: 1100px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(108,99,255,0.12);
+      border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      font-size: 0.8rem;
+      color: var(--accent2);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-tag .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--grad2);
+      color: #fff;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--text);
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 1px solid var(--border2);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--accent2); transform: translateY(-1px); }
+
+    /* HERO PHOTO */
+    .hero-photo-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      background: var(--grad);
+      z-index: 0;
+      width: 280px;
+      height: 280px;
+      margin: auto;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-photo {
+      width: 272px;
+      height: 272px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      position: relative;
+      z-index: 1;
+      border: 4px solid var(--bg);
+    }
+
+    .hero-badges {
+      position: absolute;
+      right: -10px;
+      bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 2;
+    }
+
+    .badge {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      backdrop-filter: blur(10px);
+    }
+
+    .badge span { color: var(--accent2); }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stats-bar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--border2);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── WHAT I DO ─── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--grad);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .service-card:hover::before { opacity: 1; }
+    .service-card:hover { border-color: rgba(108,99,255,0.3); transform: translateY(-2px); }
+
+    .service-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: rgba(108,99,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-card h3 { font-size: 1rem; margin-bottom: 0.6rem; }
+
+    .service-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── WEB3 TRACK RECORD ─── */
+    .web3-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 1rem;
+      padding-bottom: 2rem;
+      position: relative;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent1);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--accent1);
+      margin-top: 5px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-item:not(:last-child) .timeline-dot::after {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: calc(100% + 2.5rem);
+      background: linear-gradient(to bottom, var(--accent1), transparent);
+    }
+
+    .timeline-content {}
+
+    .timeline-role {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-company {
+      font-size: 0.8rem;
+      color: var(--accent2);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-content p {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .web3-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .highlight-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .highlight-card:hover { border-color: rgba(108,99,255,0.3); }
+
+    .highlight-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .highlight-card h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .highlight-card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(108,99,255,0.1);
+      border: 1px solid rgba(108,99,255,0.2);
+      color: var(--accent2);
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin: 0.2rem 0.2rem 0 0;
+    }
+
+    .tag-green {
+      background: rgba(52,211,153,0.1);
+      border-color: rgba(52,211,153,0.2);
+      color: var(--green);
+    }
+
+    .tag-blue {
+      background: rgba(56,189,248,0.1);
+      border-color: rgba(56,189,248,0.2);
+      color: var(--accent3);
+    }
+
+    /* ─── MIROFISH ─── */
+    #mirofish {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      max-width: 100%;
+      padding: 6rem 2rem;
+    }
+
+    #mirofish .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .mirofish-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+
+    .mirofish-intro p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .mirofish-intro .highlight {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .mirofish-concept {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .mirofish-concept h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.25rem;
+    }
+
+    .concept-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .concept-item:last-child { margin-bottom: 0; }
+
+    .concept-num {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: rgba(108,99,255,0.2);
+      color: var(--accent2);
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .simulations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .sim-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .sim-card:hover { border-color: rgba(108,99,255,0.4); transform: translateY(-3px); }
+
+    .sim-card-header {
+      padding: 1.5rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(108,99,255,0.08), rgba(167,139,250,0.04));
+    }
+
+    .sim-status {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .sim-status.live { color: var(--green); }
+    .sim-status.draft { color: var(--accent3); }
+    .sim-status.coming { color: var(--muted); }
+
+    .sim-card-header h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .sim-card-header .sim-type {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .sim-card-body {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .sim-card-body p {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .sim-personas {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .persona {
+      font-size: 0.68rem;
+      font-weight: 500;
+      background: rgba(56,189,248,0.08);
+      border: 1px solid rgba(56,189,248,0.15);
+      color: var(--accent3);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    .sim-card-footer {
+      padding: 0.75rem 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sim-link {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent2);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: gap 0.2s;
+    }
+
+    .sim-link:hover { gap: 0.6rem; }
+
+    .sim-voices {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .submit-sim {
+      margin-top: 2.5rem;
+      background: rgba(108,99,255,0.06);
+      border: 1px dashed rgba(108,99,255,0.25);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .submit-sim p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ─── AI PRODUCTS ─── */
+    .ai-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .ai-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .ai-card::after {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(108,99,255,0.08) 0%, transparent 70%);
+    }
+
+    .ai-card:hover { border-color: rgba(108,99,255,0.3); transform: translateY(-2px); }
+
+    .ai-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+
+    .ai-card .meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent2);
+      margin-bottom: 0.75rem;
+    }
+
+    .ai-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+
+    .ai-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      text-align: center;
+    }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 4rem 3rem;
+      position: relative;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--grad);
+    }
+
+    .contact-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 0.6rem 1.2rem;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .contact-item:hover { border-color: var(--accent2); transform: translateY(-1px); }
+
+    /* ─── LOGOS STRIP ─── */
+    .logos-strip {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logos-strip-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .logos-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+      margin-right: 0.5rem;
+    }
+
+    .logos-list {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .logo-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      transition: border-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .logo-chip:hover { border-color: var(--border2); }
+
+    .logo-chip .logo-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ─── SCALING SECTION ─── */
+    .scaling-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .scaling-pillar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .scaling-pillar::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+    }
+
+    .scaling-pillar.zero-one::before { background: linear-gradient(90deg, #6c63ff, #a78bfa); }
+    .scaling-pillar.one-n::before    { background: linear-gradient(90deg, #38bdf8, #34d399); }
+    .scaling-pillar.silicon::before  { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+    .scaling-pillar.startup::before  { background: linear-gradient(90deg, #a78bfa, #6c63ff); }
+
+    .scaling-pillar:hover { border-color: var(--border2); transform: translateY(-2px); }
+
+    .pillar-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.75rem;
+    }
+
+    .scaling-pillar h3 { font-size: 1.1rem; margin-bottom: 0.6rem; }
+
+    .scaling-pillar p { font-size: 0.86rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+
+    .scaling-proof {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .proof-item::before {
+      content: '✓';
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonial-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      max-width: 860px;
+      margin: 3rem auto 0;
+    }
+
+    .testimonial-card::before {
+      content: '\201C';
+      position: absolute;
+      top: -10px;
+      left: 2rem;
+      font-size: 8rem;
+      font-family: Georgia, serif;
+      color: rgba(108,99,255,0.12);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .testimonial-body {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .testimonial-quotes {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .tq {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.7;
+      font-style: italic;
+      padding-left: 1rem;
+      border-left: 2px solid rgba(108,99,255,0.35);
+    }
+
+    .testimonial-author {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+      min-width: 140px;
+    }
+
+    .author-avatar {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6c63ff, #a78bfa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .author-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .author-role {
+      font-size: 0.75rem;
+      color: var(--accent2);
+      font-weight: 500;
+    }
+
+    .author-company {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .testimonial-footer {
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .testimonial-source {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .testimonial-verified {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--green);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    footer span {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 600;
+    }
+
+    /* ─── DIVIDER ─── */
+    .section-divider {
+      border: none;
+      height: 1px;
+      background: var(--border);
+      margin: 0;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-photo-wrap { order: -1; margin-bottom: 1rem; }
+      .hero-btns { justify-content: center; }
+      .hero-sub { margin: 0 auto 2rem; }
+      .hero-badges { display: none; }
+      .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .web3-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .simulations-grid { grid-template-columns: 1fr; }
+      .mirofish-intro { grid-template-columns: 1fr; }
+      .ai-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .stats-bar-inner { grid-template-columns: 1fr 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      section { padding: 4rem 1.25rem; }
+      nav { padding: 0 1.25rem; }
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-logo">Jasna Trgachevska</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#web3">Web3</a></li>
+    <li><a href="#scaling">Scaling</a></li>
+    <li><a href="#mirofish">MiroFish Lab</a></li>
+    <li><a href="#ai">AI</a></li>
+    <li><a href="#contact" class="nav-cta">Work with me</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">
+        <span class="dot"></span>
+        Available for Fractional PM Engagements
+      </div>
+      <h1 class="hero-title">
+        Fractional PM<br/>
+        for <span class="grad-text">Web3 & AI</span><br/>
+        Products
+      </h1>
+      <p class="hero-sub">
+        I help Web3 protocols, DAOs, and AI-driven startups build the product infrastructure that scales —
+        cross-chain systems, developer APIs, token platforms, and governance tooling.
+        Hands-on from strategy to shipped.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Let's talk ↗</a>
+        <a href="#web3" class="btn-secondary">See my Web3 work</a>
+      </div>
+    </div>
+
+    <div class="hero-photo-wrap">
+      <img src="assets/photo.jpg" alt="Jasna Trgachevska" class="hero-photo" />
+      <div class="hero-badges">
+        <div class="badge">⛓ <span>58</span> blockchains</div>
+        <div class="badge">📊 <span>$1B+</span> daily vol.</div>
+        <div class="badge">🤖 AI-first PM</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS BAR ═══ -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat">
+      <span class="stat-num" data-target="1">$1B+</span>
+      <div class="stat-label">Daily cross-chain volume routed</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">250+</span>
+      <div class="stat-label">Integration partners on my APIs</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">58</span>
+      <div class="stat-label">Blockchains unified behind one surface</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">13k+</span>
+      <div class="stat-label">Token assets managed end-to-end</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LOGOS STRIP ═══ -->
+<div class="logos-strip">
+  <div class="logos-strip-inner">
+    <span class="logos-label">Worked with</span>
+    <div class="logos-list">
+
+      <div class="logo-chip">
+        <svg width="18" height="18" viewBox="0 0 40 40" fill="none">
+          <path d="M20 4L36 13V27L20 36L4 27V13L20 4Z" fill="#6c63ff" opacity="0.9"/>
+          <path d="M14 20L18 24L26 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        LI.FI
+      </div>
+
+      <div class="logo-chip">
+        <svg width="18" height="14" viewBox="0 0 60 20" fill="none">
+          <rect x="0"  y="0"  width="14" height="20" rx="2" fill="#F22F46"/>
+          <rect x="23" y="0"  width="14" height="20" rx="2" fill="#F22F46"/>
+          <rect x="46" y="0"  width="14" height="20" rx="2" fill="#F22F46"/>
+        </svg>
+        Twilio
+      </div>
+
+      <div class="logo-chip">
+        <svg width="18" height="18" viewBox="0 0 40 40" fill="none">
+          <rect x="4" y="4"  width="14" height="14" rx="1" fill="#000" stroke="#e8eaf0" stroke-width="1.5"/>
+          <rect x="22" y="4" width="14" height="14" rx="1" fill="#000" stroke="#e8eaf0" stroke-width="1.5"/>
+          <rect x="4" y="22" width="14" height="14" rx="1" fill="#000" stroke="#e8eaf0" stroke-width="1.5"/>
+          <rect x="22" y="22" width="14" height="14" rx="1" fill="#e8eaf0"/>
+        </svg>
+        Adidas
+      </div>
+
+      <div class="logo-chip">
+        <svg width="18" height="18" viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="16" fill="#6B4EFF" opacity="0.9"/>
+          <text x="20" y="25" text-anchor="middle" fill="white" font-size="11" font-weight="800" font-family="Inter,sans-serif">Ve</text>
+        </svg>
+        VeVe
+      </div>
+
+      <div class="logo-chip">
+        <svg width="18" height="18" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="8" fill="#0476F2" opacity="0.9"/>
+          <text x="20" y="27" text-anchor="middle" fill="white" font-size="13" font-weight="900" font-family="Inter,sans-serif">DC</text>
+        </svg>
+        DC Comics
+      </div>
+
+      <div class="logo-chip">
+        <svg width="18" height="18" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="8" fill="#1a1a2e" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <text x="20" y="26" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="800" font-family="Inter,sans-serif">PALM</text>
+        </svg>
+        Palm NFT
+      </div>
+
+      <div class="logo-chip">
+        <svg width="18" height="18" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="8" fill="#00B3A4" opacity="0.9"/>
+          <text x="20" y="27" text-anchor="middle" fill="white" font-size="11" font-weight="800" font-family="Inter,sans-serif">V</text>
+        </svg>
+        Veeva
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services" class="fade-in">
+  <div class="section-label">// What I do</div>
+  <h2>Fractional PM for teams that<br/><span class="grad-text">can't afford to guess</span></h2>
+  <p style="color: var(--muted); max-width: 580px; margin-bottom: 0.5rem; font-size: 0.95rem;">
+    I embed as a senior PM — not a consultant with a slide deck. I own the product function,
+    work with your engineers daily, and ship.
+  </p>
+
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="service-icon">⛓</div>
+      <h3>Cross-Chain Protocol Product</h3>
+      <p>Strategy, API design, and integration roadmaps for bridge and routing protocols. I've shipped systems handling $1B+ daily across 58 networks.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">🏛</div>
+      <h3>DAO & Governance Tooling</h3>
+      <p>Product strategy for DAO infrastructure — voting systems, treasury management, delegation mechanics, and agent-based governance simulations.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">🔌</div>
+      <h3>Developer API Platforms</h3>
+      <p>End-to-end ownership of developer-facing APIs, partner portals, SDK design, and the integration experience that makes engineers choose your platform.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">🪙</div>
+      <h3>Token Platform & Utility</h3>
+      <p>Token architecture, reward mechanics, NFT utility systems, and lifecycle management across multiple chains. Delivered for VeVe (1M+ users) and LI.FI.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">🤖</div>
+      <h3>AI-Driven Product Integration</h3>
+      <p>LLM workflow design, agentic product features, internal AI tooling, and AI-first PM processes. I build AI into the product, not just onto it.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">🚀</div>
+      <h3>0→1 & Team Scaling</h3>
+      <p>From blank doc to production. I've built NFT marketplaces from concept (Palm/DC Comics) and scaled product orgs from 1 to 4 PMs and 14+ engineers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WEB3 TRACK RECORD ═══ -->
+<section id="web3" class="fade-in">
+  <div class="section-label">// Web3 track record</div>
+  <h2>Deep in crypto since <span class="grad-text">before it was cool</span></h2>
+  <p style="color: var(--muted); max-width: 600px; margin-bottom: 3rem; font-size: 0.95rem;">
+    Every role since 2021 has been at the frontier of Web3 — not adjacent to it.
+    NFTs, DeFi, cross-chain infrastructure, token economics, and now DAO governance tooling.
+  </p>
+
+  <div class="web3-grid">
+    <!-- Timeline -->
+    <div>
+      <h3 style="font-size: 1rem; color: var(--muted); font-weight: 500; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem;">Career Timeline</h3>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background: var(--accent2); box-shadow: 0 0 0 2px var(--accent2);"></div>
+          <div class="timeline-content">
+            <div class="timeline-role">Senior Technical PM — Infrastructure, APIs & Expansion</div>
+            <div class="timeline-company">LI.FI</div>
+            <div class="timeline-date">Apr 2023 – Present</div>
+            <p>Owns the public API surface routing $1B+ daily across 58 chains. Built the token platform (13k+ assets), Partner Portal, and cross-chain fee treasury. Led integrations with Across, Stargate, Mayan, Polymer, Relay, and 10+ more.</p>
+            <div style="margin-top: 0.6rem;">
+              <span class="tag">Cross-chain</span>
+              <span class="tag">Developer APIs</span>
+              <span class="tag">DeFi</span>
+              <span class="tag">Token Platform</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-role">Product Manager — OMI Token & NFT Rewards</div>
+            <div class="timeline-company">VeVe</div>
+            <div class="timeline-date">Mar 2023 – Apr 2024</div>
+            <p>Led development of a token-based rewards system powered by the OMI token, deepening engagement across a consumer NFT platform with 1M+ users. Architected the token utility platform working daily with blockchain engineers.</p>
+            <div style="margin-top: 0.6rem;">
+              <span class="tag">NFT</span>
+              <span class="tag">Token Economics</span>
+              <span class="tag">Consumer Web3</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-role">Technical Product Owner & Delivery Manager</div>
+            <div class="timeline-company">Palm NFT Studio (DC Comics) via IOBuilders</div>
+            <div class="timeline-date">Dec 2021 – Sep 2022</div>
+            <p>Built the Palm NFT marketplace from concept to production — payments, back-office infrastructure, platform ops. Delivered the BatCowl NFT drop for DC Comics and Pistol Mint launch under high-profile launch pressure.</p>
+            <div style="margin-top: 0.6rem;">
+              <span class="tag">NFT Marketplace</span>
+              <span class="tag">Payments</span>
+              <span class="tag tag-green">DC Comics</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Highlights -->
+    <div>
+      <h3 style="font-size: 0.75rem; color: var(--muted); font-weight: 500; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.08em;">What Sets This Apart</h3>
+      <div class="web3-highlights">
+
+        <div class="highlight-card">
+          <div class="highlight-icon">🔗</div>
+          <div>
+            <h4>True multi-chain depth</h4>
+            <p>Not just EVM. I've shipped integrations across Solana, Sui, Stellar, and UTXO-based chains. Each ecosystem has its own quirks — I've navigated all of them.</p>
+          </div>
+        </div>
+
+        <div class="highlight-card">
+          <div class="highlight-icon">👩‍💻</div>
+          <div>
+            <h4>Loved by engineers, trusted by C-suite</h4>
+            <p>I started as a developer (Java, SAP ABAP) and spent years in QA across distributed systems. I can read the code, review the PR, and still present the roadmap to investors.</p>
+          </div>
+        </div>
+
+        <div class="highlight-card">
+          <div class="highlight-icon">📐</div>
+          <div>
+            <h4>Bespoke integration architecture</h4>
+            <p>15+ external engineering team integrations architected end-to-end — sitting with their engineers, decoding real constraints, shipping to production.</p>
+          </div>
+        </div>
+
+        <div class="highlight-card">
+          <div class="highlight-icon">🏛</div>
+          <div>
+            <h4>DAO & governance frontier</h4>
+            <p>Running agent-based DAO governance simulations with MiroFish + LLM personas. Researching how AI agents change DAO decision-making at scale.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SCALING ═══ -->
+<section id="scaling" class="fade-in">
+  <div class="section-label">// Organisation & Product Scaling</div>
+  <h2>From zero to one.<br/><span class="grad-text">From one to many.</span></h2>
+  <p style="color: var(--muted); max-width: 620px; margin-bottom: 0; font-size: 0.95rem;">
+    I've scaled products and teams at Silicon Valley enterprises (Twilio, Adidas, Veeva) and
+    at fast-moving Web3 startups. Both contexts demand different muscles — I've built both.
+    I bring frameworks, not opinions.
+  </p>
+
+  <div class="scaling-grid">
+
+    <div class="scaling-pillar zero-one fade-in">
+      <div class="pillar-label">0 → 1 Framework</div>
+      <h3>Blank doc to production</h3>
+      <p>No product, no process, no team — no problem. I've built NFT marketplaces, token platforms, and API surfaces from scratch. I define scope, align stakeholders, set delivery cadence, and protect engineers from chaos so they can build.</p>
+      <div class="scaling-proof">
+        <div class="proof-item">Palm NFT marketplace — concept to production (DC Comics)</div>
+        <div class="proof-item">LI.FI Partner Portal — designed and launched from zero</div>
+        <div class="proof-item">Token reward platform — VeVe OMI system, 1M+ users</div>
+        <div class="proof-item">DAO simulation framework — MiroFish fork, end-to-end</div>
+      </div>
+    </div>
+
+    <div class="scaling-pillar one-n fade-in">
+      <div class="pillar-label">1 → N Framework</div>
+      <h3>Scaling what's already working</h3>
+      <p>Once product-market fit exists, the challenge shifts to throughput, reliability, and team capacity. I've scaled cross-chain infrastructure from a handful of networks to 58, and grown a product org from 1 PM to a team of 4 with 14+ engineers.</p>
+      <div class="scaling-proof">
+        <div class="proof-item">58 blockchains — led chain expansion across EVM + non-EVM</div>
+        <div class="proof-item">$1B+ daily volume — scaled backend APIs to match demand</div>
+        <div class="proof-item">250+ partners — built self-serve portal to remove PM bottleneck</div>
+        <div class="proof-item">3 PMs hired and mentored — built the function, not just the product</div>
+      </div>
+    </div>
+
+    <div class="scaling-pillar silicon fade-in">
+      <div class="pillar-label">Silicon Valley DNA</div>
+      <h3>Enterprise-grade rigour</h3>
+      <p>Twilio, Adidas, Veeva Systems — these aren't just logos. They taught me CI/CD discipline, perceptual quality measurement, domain-driven design, and how to operate inside large cross-functional orgs where alignment is earned, not assumed.</p>
+      <div class="scaling-proof">
+        <div class="proof-item">Twilio — audio/video quality pipelines for real-time comms at scale</div>
+        <div class="proof-item">Adidas — mobile quality processes and release-cycle improvement</div>
+        <div class="proof-item">Veeva — test automation and data validation for enterprise SaaS</div>
+        <div class="proof-item">Kneip — Kafka distributed systems, financial data integrity</div>
+      </div>
+    </div>
+
+    <div class="scaling-pillar startup fade-in">
+      <div class="pillar-label">Startup Speed</div>
+      <h3>Move fast without breaking trust</h3>
+      <p>In startups, the PM is often the only person standing between a great idea and a chaotic sprint. I protect engineers' focus, write airtight requirements, and apply domain-driven design to cut ambiguity — so teams ship without rework.</p>
+      <div class="scaling-proof">
+        <div class="proof-item">LLM-first requirements workflow — shipped at LI.FI, adopted daily</div>
+        <div class="proof-item">Domain-driven design — reduces ambiguity, improves predictability</div>
+        <div class="proof-item">Scope protection — led prioritisation with discipline under pressure</div>
+        <div class="proof-item">Async-first — distributed teams across timezones, zero delays</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ MIROFISH ═══ -->
+<div id="mirofish" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <section style="max-width: 1100px; margin: 0 auto; padding: 6rem 2rem;" class="fade-in">
+    <div class="section-label">// MiroFish Lab</div>
+    <h2>DAO Governance<br/><span class="grad-text">Agent Simulations</span></h2>
+
+    <div class="mirofish-intro">
+      <div>
+        <p>
+          <span class="highlight">MiroFish is an agent simulation framework</span> for modelling how DAOs make decisions —
+          before those decisions go on-chain and become irreversible.
+        </p>
+        <p>
+          I forked MiroFish, extended it with custom AI personas and scenario assumptions for
+          protocol and DAO governance contexts, and integrated an ElevenLabs voice agent as one
+          of the simulated stakeholders.
+        </p>
+        <p>
+          Each simulation models a realistic governance scenario — a treasury vote, a protocol upgrade,
+          an incentive structure change — with distinct stakeholder personas that argue, deliberate, and vote.
+          The output is a structured writeup of outcomes, minority positions, and risk flags.
+        </p>
+        <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <span class="tag">MiroFish fork</span>
+          <span class="tag tag-blue">ElevenLabs voice</span>
+          <span class="tag">LLM personas</span>
+          <span class="tag tag-green">DAO governance</span>
+          <span class="tag">Protocol simulations</span>
+        </div>
+      </div>
+
+      <div class="mirofish-concept">
+        <h4>How a simulation runs</h4>
+        <div class="concept-item">
+          <div class="concept-num">1</div>
+          <div>Define the governance scenario — treasury allocation, parameter change, protocol upgrade, or incentive design.</div>
+        </div>
+        <div class="concept-item">
+          <div class="concept-num">2</div>
+          <div>Assign stakeholder personas — large token holders, retail delegators, core devs, ecosystem partners, and adversarial actors.</div>
+        </div>
+        <div class="concept-item">
+          <div class="concept-num">3</div>
+          <div>Run deliberation rounds — agents debate, form coalitions, and update positions based on arguments.</div>
+        </div>
+        <div class="concept-item">
+          <div class="concept-num">4</div>
+          <div>Surface outcomes — likely vote result, minority dissent, attack vectors, and risk flags for the protocol.</div>
+        </div>
+        <div class="concept-item">
+          <div class="concept-num">5</div>
+          <div>Voice replay — ElevenLabs agent narrates the deliberation as a listenable walkthrough.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Simulation Cards -->
+    <div class="simulations-grid">
+
+      <div class="sim-card">
+        <div class="sim-card-header">
+          <div class="sim-status coming">◦ Coming Soon</div>
+          <h3>Treasury Diversification Vote</h3>
+          <div class="sim-type">Protocol Treasury · DeFi DAO</div>
+        </div>
+        <div class="sim-card-body">
+          <p>A DAO holds 90% of treasury in its native token. A proposal to diversify 30% into stablecoins triggers a governance battle between maximalists, risk-cautious LPs, and protocol contributors.</p>
+          <div class="sim-personas">
+            <span class="persona">Large Holder</span>
+            <span class="persona">Retail Delegator</span>
+            <span class="persona">Core Dev</span>
+            <span class="persona">LP Maximalist</span>
+          </div>
+        </div>
+        <div class="sim-card-footer">
+          <a href="#contact" class="sim-link">Request preview →</a>
+          <span class="sim-voices">🎙 Voice enabled</span>
+        </div>
+      </div>
+
+      <div class="sim-card">
+        <div class="sim-card-header">
+          <div class="sim-status coming">◦ Coming Soon</div>
+          <h3>Bridge Fee Parameter Change</h3>
+          <div class="sim-type">Cross-Chain Protocol · Infra DAO</div>
+        </div>
+        <div class="sim-card-body">
+          <p>A cross-chain bridge protocol proposes raising relayer fees by 15bps to fund security audits. Integrators push back. How does the DAO navigate between security investment and partner retention?</p>
+          <div class="sim-personas">
+            <span class="persona">Relayer</span>
+            <span class="persona">Integration Partner</span>
+            <span class="persona">Security Council</span>
+            <span class="persona">Token Holder</span>
+          </div>
+        </div>
+        <div class="sim-card-footer">
+          <a href="#contact" class="sim-link">Request preview →</a>
+          <span class="sim-voices">🎙 Voice enabled</span>
+        </div>
+      </div>
+
+      <div class="sim-card">
+        <div class="sim-card-header">
+          <div class="sim-status coming">◦ Coming Soon</div>
+          <h3>AI Agent Voting Rights</h3>
+          <div class="sim-type">Governance Meta · AI + DAO</div>
+        </div>
+        <div class="sim-card-body">
+          <p>A DAO considers allowing autonomous AI agents to hold delegation and vote on routine operational proposals. Explores legitimacy, attack surface, and the boundary between automation and governance capture.</p>
+          <div class="sim-personas">
+            <span class="persona">AI Agent</span>
+            <span class="persona">Human Delegate</span>
+            <span class="persona">Protocol Founder</span>
+            <span class="persona">Skeptic</span>
+          </div>
+        </div>
+        <div class="sim-card-footer">
+          <a href="#contact" class="sim-link">Request preview →</a>
+          <span class="sim-voices">🎙 Voice enabled</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="submit-sim">
+      <p>Have a governance scenario your DAO is wrestling with? I can run a custom simulation.</p>
+      <a href="#contact" class="btn-primary" style="display: inline-flex; margin: 0 auto;">Request a simulation ↗</a>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ AI PRODUCTS ═══ -->
+<section id="ai" class="fade-in">
+  <div class="section-label">// AI-driven products</div>
+  <h2>AI isn't a feature —<br/><span class="grad-text">it's how I work</span></h2>
+  <p style="color: var(--muted); max-width: 580px; margin-bottom: 0; font-size: 0.95rem;">
+    I build AI into product workflows, not onto them. From internal LLM tooling shipped to teams at LI.FI
+    to running a generative AI content studio end-to-end.
+  </p>
+
+  <div class="ai-grid">
+
+    <div class="ai-card">
+      <div class="meta">LI.FI · Internal Tooling · 2023–Present</div>
+      <h3>LLM-Powered PM Workflow</h3>
+      <p>Shipped internal LLM tooling now used daily by the product team at LI.FI — automated spec and documentation generation, custom "skills" for PRD drafting, and an LLM-optimised requirements workflow. Not a prototype — in daily production use.</p>
+      <div class="ai-tags">
+        <span class="tag">LLM workflows</span>
+        <span class="tag tag-blue">PRD automation</span>
+        <span class="tag">Spec generation</span>
+        <span class="tag">AI-first PM</span>
+      </div>
+    </div>
+
+    <div class="ai-card">
+      <div class="meta">MiroFish Lab · Research · 2024–Present</div>
+      <h3>Agent Simulation Framework</h3>
+      <p>Forked MiroFish and extended it with custom personas and scenario assumptions for DAO governance. Integrated ElevenLabs voice agents as stakeholder personas. Running live governance simulations with multi-agent deliberation.</p>
+      <div class="ai-tags">
+        <span class="tag">Multi-agent</span>
+        <span class="tag tag-blue">ElevenLabs</span>
+        <span class="tag">DAO governance</span>
+        <span class="tag">Voice AI</span>
+      </div>
+    </div>
+
+    <div class="ai-card">
+      <div class="meta">Personal Project · Creator AI · Ongoing</div>
+      <h3>LuNoMa Stories — Generative AI Studio</h3>
+      <p>End-to-end YouTube channel produced entirely with generative AI. Midjourney for visuals, fal.ai for motion, Canva AI for design, ElevenLabs TTS for narration. First-person experience of the full AI creator workflow.</p>
+      <div class="ai-tags">
+        <span class="tag">Midjourney</span>
+        <span class="tag tag-blue">fal.ai</span>
+        <span class="tag">ElevenLabs</span>
+        <span class="tag">Canva AI</span>
+        <span class="tag tag-green">YouTube</span>
+      </div>
+    </div>
+
+    <div class="ai-card">
+      <div class="meta">Personal Project · Python · 2024</div>
+      <h3>DEX Arbitrage Bot</h3>
+      <p>Built a DEX arbitrage bot end-to-end using AI pair-programming (Python). Kept hands on API integration, auth flows, and real-time on-chain data handling. Practical proof that AI-assisted coding produces real, working systems when you understand what you're building.</p>
+      <div class="ai-tags">
+        <span class="tag">Python</span>
+        <span class="tag tag-blue">DeFi APIs</span>
+        <span class="tag">DEX</span>
+        <span class="tag">AI pair-programming</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials" class="fade-in">
+  <div class="section-label">// Testimonials</div>
+  <h2>What people say<br/><span class="grad-text">who've worked with me</span></h2>
+
+  <div class="testimonial-card">
+    <div class="testimonial-body">
+      <div class="testimonial-quotes">
+        <p class="tq">"Jasna demonstrated exceptional ownership and technical depth across one of our most critical product areas. Her technical understanding of distributed systems, cross-chain architectures, and execution models was evident throughout her work."</p>
+        <p class="tq">"She had a strong ability to translate complex business needs into clear, structured, and actionable requirements — consistently applying domain-driven design principles to reduce ambiguity and improve delivery predictability."</p>
+        <p class="tq">"From a leadership perspective, Jasna led prioritisation efforts with discipline and actively protected the development team from noise and scope creep. She maintained a strong focus on high-impact initiatives."</p>
+        <p class="tq">"We recommend her without reservation. She would be a valuable asset to any team working at the intersection of product, technology, and blockchain infrastructure."</p>
+      </div>
+      <div class="testimonial-author">
+        <div class="author-avatar">MK</div>
+        <div class="author-name">Max Klenk</div>
+        <div class="author-role">CTO</div>
+        <div class="author-company">LI.FI Service GmbH</div>
+      </div>
+    </div>
+    <div class="testimonial-footer">
+      <span class="testimonial-source">Formal recommendation letter · LI.FI Service GmbH · April 2026</span>
+      <span class="testimonial-verified">
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M8.5 3L10 1.5L11.5 3L13.5 2.5L14.5 4.5L16.5 4.5L17 6.5L19 7.5L18.5 9.5L20 11L18.5 12.5L19 14.5L17 15.5L16.5 17.5L14.5 17.5L13.5 19.5L11.5 19L10 20.5L8.5 19L6.5 19.5L5.5 17.5L3.5 17.5L3 15.5L1 14.5L1.5 12.5L0 11L1.5 9.5L1 7.5L3 6.5L3.5 4.5L5.5 4.5L6.5 2.5Z" fill="#34d399" opacity="0.2"/><path d="M7 10L9 12L13 8" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        DocuSign verified · Signed by CTO
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="fade-in">
+  <div style="text-align: center;">
+    <div class="section-label" style="text-align: center;">// Let's work together</div>
+    <h2>Ready to build something<br/><span class="grad-text">that actually ships?</span></h2>
+  </div>
+  <div class="contact-card">
+    <h3>Open to fractional engagements</h3>
+    <p>Whether you need a PM for a DAO product sprint, cross-chain infrastructure, or an AI-driven feature — I embed, I own it, and I ship. Based in Palma, Spain. Works remotely worldwide.</p>
+    <div class="contact-links">
+      <a href="mailto:jasna.com@gmail.com" class="contact-item">
+        <span>✉</span> jasna.com@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/jasnatrgachevska" target="_blank" rel="noopener" class="contact-item">
+        <span>in</span> LinkedIn
+      </a>
+      <a href="#mirofish" class="contact-item">
+        <span>🔬</span> MiroFish Lab
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p>© 2026 <span>Jasna Trgachevska</span> · Fractional PM · Web3 & AI · Palma, Spain</p>
+</footer>
+
+<script>
+  // Intersection Observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Stagger service cards
+  document.querySelectorAll('.service-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 0.08}s`;
+  });
+</script>
+
+</body>
+</html>
